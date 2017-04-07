@@ -70,10 +70,10 @@ def get_access_token(consumer_key, consumer_secret):
 
 
 def main():
-    # consumer_key = input('Enter your consumer key: ')
-    # consumer_secret = input('Enter your consumer secret: ')
-    consumer_key = "cKbhMGDG86wSUW9NfDYVxY47R"
-    consumer_secret = "0Ua0fmJBUGkt1c0QazMyvoeXbRqbw9TuwDVrTVlkZUblbc4dRG"
+    consumer_key = input('Enter your consumer key: ')
+    consumer_secret = input('Enter your consumer secret: ')
+    # consumer_key = "cKbhMGDG86wSUW9NfDYVxY47R"
+    # consumer_secret = "0Ua0fmJBUGkt1c0QazMyvoeXbRqbw9TuwDVrTVlkZUblbc4dRG"
     get_access_token(consumer_key, consumer_secret)
 
 

@@ -1,2 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
+tweets/config.ini
+tweets/__pycache__
+
