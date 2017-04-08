@@ -35,10 +35,10 @@ def getTweets(woeid):
 
     trends = api.GetTrendsWoeid(woeid=woeid)  # woeid of NYC = 2459115
     tweets = {}
-    print("Processing.", end="")
+    print("Processing...")
     for trend in trends:
         tweets[trend.name] = api.GetSearch(term=trend.name, count=1000)
-        print(".", end="")
+        
     print("\n\n")
     return tweets
 
