@@ -1,6 +1,6 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This README documents necessary steps to the application up and running.
 
 ### The project ###
 
@@ -12,19 +12,20 @@ application fetches trending topics from the twitter and tweets for them. The fe
 * Version: 1.1
 
 ### Authors ###
-Samana Katti (sk6021@g.rit.edu)
-Pankaj Vasant Uchil (pu3876@g.rit.edu)
-Kantha Girish Gangadhara (kg2605@g.rit.edu)
+* Samana Katti (sk6021@g.rit.edu)
+* Pankaj Vasant Uchil (pu3876@g.rit.edu)
+* Kantha Girish Gangadhara (kg2605@g.rit.edu)
 
-### How do I get set up? ###
+### Setup Instructions ###
 
 * The code is written in python-3.5. The below mentioned dependencies are required to be
 installed
 * Configuration : config.ini [twitter keys]
-* Dependencies : python 3.5 or higher,
-                 python-twitter [https://pypi.python.org/pypi/python-twitter/]
+* Dependencies :
+                <br/>python 3.5 or higher,
+                <br/>python-twitter (https://pypi.python.org/pypi/python-twitter/)
 * Database configuration
-* How to run tests : Command line - python(3) core_algorithm.py
-                     Any python IDE - run core_algorithm.py
+* How to run tests :
+                    <br/>Command line - python(3) core_algorithm.py
+                    <br/>Any python IDE - run core_algorithm.py
 
-* Deployment instructions

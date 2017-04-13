@@ -1,3 +1,9 @@
+"""
+python version:3.5
+"""
+
+__author__ = "Kantha Girish", "Pankaj Uchil Vasant", "Samana Katti"
+
 import configparser
 import json
 
@@ -60,19 +66,24 @@ def test():
 
         with open(targetsFile) as file:
             targets = json.load(file)
-            filteredTweets = invIndex.getRelevantTweets(targets)
+            filteredTweets = invIndex.getRelevantTweets(targets['targets'])
 
-            print("The following are the filtered relevant tweets for each trending topic")
-            print("______________________________________________________________________")
+            print("The following are the filtered relevant tweets for each trending topic\n\n")
+            tweetCount = 0
             for trend, tweets in filteredTweets.items():
                 if tweets:
-                    print(trend)
+                    print("Trend: " + trend)
+                    print("__________________________________________________________________")
+
+                    tweetCount += len(tweets)
                     for tweet in tweets:
                         print("User: " + tweet.user.name)
                         print("Tweet Text: " + tweet.text)
                         print("Re-tweet count: " + str(tweet.retweet_count))
-                        print("Favorites: " + str(tweet.favorite_count))
+                        print("Favorites: " + str(tweet.favorite_count) + "\n")
                     print("\n")
+            if tweetCount == 0:
+                print("Looks like no one (in our list) has tweeted on current trends!")
 
 if __name__ == '__main__':
     test()

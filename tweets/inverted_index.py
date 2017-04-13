@@ -1,3 +1,7 @@
+"""
+python version:3.5
+"""
+
 __author__ = "Kantha Girish", "Pankaj Uchil Vasant", "Samana Katti"
 
 
@@ -52,7 +56,7 @@ class InvertedIndex:
 
     def getRelevantTweets(self, targetHandles):
         """
-        :param targetHandles: A python dictionary of target twitter handles of popular
+        :param targetHandles: A python list of target twitter handles of popular
         people/celebs with the keys as twitter handles.
         :return: A python dictionary of keys as the trends and the values as list of tweets
         filtered by the list of target twitter handles.
