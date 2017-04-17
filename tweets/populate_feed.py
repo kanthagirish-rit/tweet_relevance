@@ -10,10 +10,13 @@ import json
 import twitter
 
 from inverted_index import InvertedIndex
+from database import getDBInstance
+from util import getLogger
 
 
-configFile = "config.ini"
-targetsFile = "targets.json"
+CONFIG_FILE = "config.ini"
+TARGETS_FILE = "targets.json"
+logger = getLogger("populate_feed")
 
 
 def getTweets(woeid):
@@ -33,7 +36,7 @@ def getTweets(woeid):
     python dictionary
     """
     config = configparser.ConfigParser()
-    config.read(configFile)
+    config.read(CONFIG_FILE)
     api = twitter.Api(consumer_key=config['twitter']['consumer_key']
                       , consumer_secret=config['twitter']['consumer_secret']
                       , access_token_key=config['twitter']['access_token_key']
@@ -41,11 +44,11 @@ def getTweets(woeid):
 
     trends = api.GetTrendsWoeid(woeid=woeid)  # woeid of NYC = 2459115
     tweets = {}
-    print("Processing...")
+    logger.debug("getTweets(): fetching trends")
     for trend in trends:
-        tweets[trend.name] = api.GetSearch(term=trend.name, count=1000)
+        tweets[trend.name] = api.GetSearch(term=trend.name
+                                           , count=config['twitter']['fetch_count'])
         
-    print("\n\n")
     return tweets
 
 
@@ -64,7 +67,7 @@ def test():
     if tweets:
         invIndex = InvertedIndex(tweets)
 
-        with open(targetsFile) as file:
+        with open(TARGETS_FILE) as file:
             targets = json.load(file)
             filteredTweets = invIndex.getRelevantTweets(targets['targets'])
 
@@ -85,5 +88,27 @@ def test():
             if tweetCount == 0:
                 print("Looks like no one (in our list) has tweeted on current trends!")
 
+
+def main():
+    """
+    :return: None
+
+    This is method is executed when this file is run as a python script
+    """
+    db = getDBInstance()
+    cursor = db.places.find({})
+
+    logger.debug("main(): Beginning to fetch tweets and create Inverted Index")
+    for document in cursor:
+        woeid = int(document['woeid'])
+        logger.debug("main(): Working on woeid-{}".format(woeid))
+        tweets = getTweets(woeid)
+        if tweets:
+            invIndex = InvertedIndex(tweets)
+
+            logger.debug("main(): calling writeToDB()")
+            invIndex.writeToDB(woeid)
+            del invIndex
+
 if __name__ == '__main__':
-    test()
+    main()
