@@ -1,6 +1,5 @@
 import logging
 from configparser import ConfigParser
-import os
 
 CONFIG_FILE = "config.ini"
 

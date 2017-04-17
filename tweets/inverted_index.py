@@ -4,6 +4,8 @@ python version:3.5
 
 __author__ = "Kantha Girish", "Pankaj Uchil Vasant", "Samana Katti"
 
+import json
+
 from database import getDBInstance
 import util
 
@@ -107,7 +109,7 @@ class InvertedIndex:
             if posts:
                 filteredCount += len(posts)
                 for trendIndex, post in posts:
-                    trendingData[self.trends[trendIndex]].append(str(post))
+                    trendingData[self.trends[trendIndex]].append(json.loads(str(post)))
 
         if filteredCount > 0:
             db.trends.update_one({
