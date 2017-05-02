@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+	background-color:  #c0deed;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.h2{
+	font-family: 'Montserrat', sans-serif;
+	width:100%;
+	height:20%;
+	text-align:center;
+	margin-bottom: 50px;
+}
+
+.h22{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 30;
+	width:100%;
+	height:8%;
+	text-align:center;
+	margin-bottom: 2%;
+	margin-top:1%;
+}
+
+div#container {
+	background-color: none;
+	width: 70%;
+	height: 100%;
+	margin-left:15%;
+}
+div#trend-container {
+	background-color: #00aced;
+	margin: 5px 10px;
+	display: inline-block;
+	float: left;
+	width: 30%;
+	height: 25%;
+}
+ul#menu {
+    list-style-type: none;
+    margin: 5%;
+}
+li#list2{
+	margin: 2%;
+	font-size: 18;
+	word-wrap: break-word;
+}
+
+li a {
+    display: block;
+    color: black;
+    margin: 10px;
+   	text-align: center !important;
+}
+div#form_page {
+	position: absolute;
+	top: 100px;
+	left: 65%;
+	margin-left:-250px;
+	width: 150px; 
+	height: 50px;
+	margin-bottom: 50px;
+}
+ul#list1 {
+    list-style-type: disc;
+    margin: 5%;
+    
+        }
+div#container_tweets {
+	background-color: none;
+	width: 100%;
+	height: 100%;
+	text-align:left;
+	padding-right:30px;
+	font-size:18px;
+	font-weight: bold;
+}
+
+.footer {
+    width:100%;
+    height: 20%;
+}
+
+button {
+     background:none!important;
+     color:inherit;
+     border:none;
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     border-bottom:1px solid #444;
+     cursor: pointer;
+}

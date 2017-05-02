@@ -1,9 +1,9 @@
 from pymongo import MongoClient
-import configparser
+from .util import config
 
 CONFIG_FILE = "config.ini"
 MONGO_LOCATION = "mongodb://localhost:27017"
-
+DB_NAME = "tweet_relevance"
 db = None
 
 
@@ -12,12 +12,9 @@ def getDBInstance():
     :return:
     """
     if db is None:
-        config = configparser.ConfigParser()
-        config.read(CONFIG_FILE)
-
         client = MongoClient(MONGO_LOCATION)
         global db
-        db = client[config['mongodb']['database_name']]
+        db = client[DB_NAME]
         return db
     else:
         return db

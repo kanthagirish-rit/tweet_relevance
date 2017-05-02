@@ -4,17 +4,15 @@ python version:3.5
 
 __author__ = "Kantha Girish", "Pankaj Uchil Vasant", "Samana Katti"
 
-import configparser
 import json
 
 import twitter
 
 from inverted_index import InvertedIndex
 from database import getDBInstance
-from util import getLogger
+from util import getLogger, config
 
 
-CONFIG_FILE = "config.ini"
 TARGETS_FILE = "targets.json"
 logger = getLogger("populate_feed")
 
@@ -35,8 +33,6 @@ def getTweets(woeid):
     specified `woeid` and the tweets are fetched for each trend. The result is returned as a
     python dictionary
     """
-    config = configparser.ConfigParser()
-    config.read(CONFIG_FILE)
     api = twitter.Api(consumer_key=config['twitter']['consumer_key']
                       , consumer_secret=config['twitter']['consumer_secret']
                       , access_token_key=config['twitter']['access_token_key']
@@ -99,6 +95,7 @@ def main():
     cursor = db.places.find({})
 
     logger.debug("main(): Beginning to fetch tweets and create Inverted Index")
+    woeids = [2459115, 2442047, 2490383]
     for document in cursor:
         woeid = int(document['woeid'])
         logger.debug("main(): Working on woeid-{}".format(woeid))
