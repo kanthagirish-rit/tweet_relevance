@@ -19,7 +19,7 @@ api = twitter.Api(consumer_key=config['twitter']['consumer_key']
                       , access_token_secret=config['twitter']['access_token_secret'])
 
 
-for i in range(10):
+for i in range(30):
     if(trend[i][:1] == '#'):
         url = 'https://twitter.com/hashtag/%s filter:verified' % (trend[i][1:])
     else:
@@ -46,7 +46,7 @@ for i in range(10):
     #print(i)
 for user in handleUnique:
     users = api.GetUser(screen_name=user)
-    usersDesc.append("handle:" + user+ " desc:"+ users.description)
+    usersDesc.append(user)
 
 print("\n".join(usersDesc))
 
