@@ -4,4 +4,5 @@
 tweets/__pycache__
 tweets/migrations
 tweet_relevance/__pycache__
+test.py
 

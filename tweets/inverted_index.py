@@ -4,6 +4,13 @@ python version:3.5
 
 __author__ = "Kantha Girish", "Pankaj Uchil Vasant", "Samana Katti"
 
+import json
+import datetime
+
+from database import getDBInstance
+import util
+from naivebayes import NaiveBayes
+
 
 class InvertedIndex:
     """
@@ -13,12 +20,16 @@ class InvertedIndex:
     `Status` object, which is the Tweet, is added to the postings list against each trend
     for each user, if he has tweeted under the trend.
     """
-    __slots__ = ["twitterHandles", "trends", "indexLists"]
+    __slots__ = ["twitterHandles", "trends", "indexLists", "logger", "totalTweets",
+                 "categories"]
 
     def __init__(self, tweets):
         self.twitterHandles = []
         self.trends = []
+        self.categories = []
         self.indexLists = []
+        self.logger = util.getLogger("populate_feed.InvertedIndex")
+        self.totalTweets = 0
 
         self._populate(tweets)
 
@@ -32,6 +43,14 @@ class InvertedIndex:
         """
         for trendName in tweets:
             self.trends.append(trendName)
+            self.totalTweets += len(tweets[trendName])
+
+            # classify trend
+            tweetsDoc = " ".join([tweet.text for tweet in tweets[trendName]])
+            model = NaiveBayes()
+            model.loadModelFromDB()
+            self.categories.append(model.classify(tweetsDoc))
+
             for tweet in tweets[trendName]:
                 if tweet.user.screen_name not in self.twitterHandles:
                     self.twitterHandles.append(tweet.user.screen_name)
@@ -40,6 +59,8 @@ class InvertedIndex:
                 else:
                     posts = self.indexLists[self.twitterHandles.index(tweet.user.screen_name)]
                     posts.append((self.trends.index(trendName), tweet))
+        self.logger.debug('Created and populated Inverted Index: Trends-{}, Tweets-{}'.format(
+            len(self.trends), self.totalTweets))
 
     def search(self, handle):
         """
@@ -77,6 +98,60 @@ class InvertedIndex:
                 for trendIndex, post in posts:
                     tweets[self.trends[trendIndex]].append(post)
         return tweets
+
+    def writeToDB(self, woeid):
+        """
+        :param woeid: unique id of the place for which the trends and corresponding tweets
+            were fetched.
+        :return: None
+
+        This method writes the filtered tweets to the database for the given woeid.
+        """
+        db = getDBInstance()
+        self.logger.debug('writeToDB() before writing')
+
+        targetDocument = db.targets.find_one({})
+        targets = targetDocument['targets']
+
+        trendingData = {
+            trend: [] for trend in self.trends
+        }
+
+        filteredCount = 0
+        for target in targets:
+            posts = self.search(target)
+            if posts:
+                filteredCount += len(posts)
+                for trendIndex, post in posts:
+                    trendingData[self.trends[trendIndex]].append(json.loads(str(post)))
+
+        data = []
+        for trend in trendingData:
+            d = {
+                "trend": trend,
+                "tweets": trendingData[trend],
+                "category": self.categories[self.trends.index(trend)]
+            }
+            data.append(d)
+
+        if filteredCount > 0:
+            db.trends.update_one({
+                    "woeid": woeid
+                },
+                update={
+                    "$set": {
+                        "trends": data,
+                        "updated": datetime.datetime.now()
+                    }
+                },
+                upsert=True
+            )
+
+            self.logger.debug('writeToDB(): Fetched-{}, Filtered-{}\n'.format(
+                self.totalTweets, filteredCount))
+        else:
+            self.logger.debug('writeToDB(): Fetched-{}, Filtered-{}\n'.format(
+                self.totalTweets, 0))
 
     def __str__(self):
         """

@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Twitter Project</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tweets/style.css' %}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'tweets/script.js' %}"></script>
+</head>
+<body>
+<div class="h2">Tweets Relevance System</div>
+<div id="form_page">
+    <form action='' method="POST">
+        {% csrf_token %}
+        <select id="woeid" name="woeid" style="margin-bottom:10px">
+            <option value="2459115">New York</option>
+            <option value="2442047">Los Angeles</option>
+            <option value="2490383">Seattle</option>
+        </select>
+        <input type="button" class="btn btn-primary" value="submit" onclick="getTrends()">
+    </form>
+</div>
+<div id="container">
+</div>
+</body>
+</html>
