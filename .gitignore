@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea
-tweets/config.ini
+.*
+!/.gitignore
 tweets/__pycache__
+tweets/migrations
+tweet_relevance/__pycache__
+test.py
 
