@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
-	background-color:  #c0deed;
-	font-family: 'Montserrat', sans-serif;
+	background-color:  #f2f5f9;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.h2{
-	font-family: 'Montserrat', sans-serif;
+.title{
 	width:100%;
-	height:20%;
+	height:50px;
 	text-align:center;
-	margin-bottom: 50px;
+	color:#ffffff;
+	background-color: #3b5998;
+	font-weight: 500;
+    font-size: 32px;
 }
 
 .h22{
@@ -29,22 +31,19 @@ div#container {
 	height: 100%;
 	margin-left:15%;
 }
-div#trend-container {
-	background-color: #00aced;
-	margin: 5px 10px;
+.trend-container {
 	display: inline-block;
 	float: left;
-	width: 30%;
-	height: 25%;
+	width: 100%;
+	height: 45px;
 }
+
 ul#menu {
     list-style-type: none;
-    margin: 5%;
 }
+
 li#list2{
-	margin: 2%;
-	font-size: 18;
-	word-wrap: break-word;
+	font-size: 16;
 }
 
 li a {
@@ -54,14 +53,26 @@ li a {
    	text-align: center !important;
 }
 div#form_page {
-	position: absolute;
-	top: 100px;
-	left: 65%;
-	margin-left:-250px;
-	width: 150px; 
+	position: relative;
+	width: 100%;
 	height: 50px;
-	margin-bottom: 50px;
+	background-color: #f7faff;
+	border: 1px solid #e3e8ef;
 }
+
+.form_elements{
+    margin-top:5px;
+    width: 30%;
+    margin-left:35%;
+    height:inherit;
+}
+
+.form_div{
+    width:33%;
+    float:left;
+    height: inherit;
+}
+
 ul#list1 {
     list-style-type: disc;
     margin: 5%;
@@ -78,17 +89,125 @@ div#container_tweets {
 }
 
 .footer {
-    width:100%;
-    height: 20%;
+	width:100%;
+	height:50px;
+	color:#ffffff;
+	background-color: #3b5998;
+	font-weight: 500;
+    font-size: 20px;
 }
 
 button {
      background:none!important;
+     text-decoration: none !important;
      color:inherit;
-     border:none;
      padding:0!important;
+     border: none;
      font: inherit;
-     /*border is optional*/
-     border-bottom:1px solid #444;
      cursor: pointer;
+}
+
+.mainContainer{
+    width:100%;
+}
+
+.trendsContainer{
+    float:left;
+    width: 25%;
+    height: auto;
+    margin: 5px;
+    background-color: #f7faff;
+	border: 1px solid #e3e8ef;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.tweetsContainer{
+    float:left;
+    width: 50%;
+    height: auto;
+    margin: 5px;
+    background-color: #f7faff;
+	border: 1px solid #e3e8ef;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.trendName{
+    font-weight: bold;
+    color: #0084B4;
+}
+
+.trendCount{
+    color: #657786;
+    font-size: 12px;
+}
+
+.trendsTitle{
+    color: #66757f;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top:10%;
+    margin-left:30%;
+}
+
+.tweet-container {
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #e3e8ef;
+}
+
+.avatar{
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    float: left;
+    margin: 10px;
+}
+
+.fullname{
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #14171a;
+    margin-top: 10px;
+}
+
+.namegroup{
+    margin-top: 10px;
+}
+
+.username{
+    font-size: 14px;
+    color: #657786;
+    margin-left: 5px;
+}
+
+.textgroup{
+    color: #14171a;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 68px;
+}
+
+.tweetText{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 20px;
+    color: #14171a;
+}
+
+.detailsgroup{
+    font-size: 14px;
+    color: #657786;
+    margin-left: 80px;
+    margin-bottom:5px;
+}
+
+.details{
+    margin-right:40px;
+}
+
+.tweetlink{
+    color: #0084B4;
 }

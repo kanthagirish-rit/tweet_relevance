@@ -1,7 +1,7 @@
 from .database import getDBInstance
 
 
-def getTrends(woeid):
+def getTrends(woeid, category):
     """
     :param woeid: a unique integer representation of the place
     :return: a python list of python dictionaries of the following structure
@@ -20,13 +20,15 @@ def getTrends(woeid):
             "$unwind": "$trends"
         },
         {
+            "$match": {"trends.category": category}
+        },
+        {
             "$unwind": "$trends.tweets"
         },
         {
             "$group": {
                 "_id": {
-                    "trend": "$trends.trend",
-                    "category": "$trends.category"
+                    "trend": "$trends.trend"
                 },
                 "count": {"$sum": 1}
             }

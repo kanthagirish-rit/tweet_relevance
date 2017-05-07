@@ -17,11 +17,9 @@ def home(request):
     :return:
     """
     print("views.home()")
-    woeid = None
-    if request.method == 'POST':
-        woeid = request.POST['woeid']
-        print(woeid)
-    data = getTrends(int(woeid))
+    woeid = int(request.POST['woeid'])
+    category = request.POST['category']
+    data = getTrends(woeid, category)
     for item in data:
         item["trend"] = item["_id"]
         del item["_id"]
@@ -43,4 +41,5 @@ def tweets(request):
     print(trend + " " + str(woeid))
     data = getTweets(trend, woeid)
     print("redirecting to tweets.html")
-    return render(request, 'tweets/tweets.html', {"data": data})
+    # return render(request, 'tweets/tweets.html', {"data": data})
+    return HttpResponse(json.dumps(data), content_type='application/json')
