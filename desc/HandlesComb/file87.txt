@@ -1,0 +1,1 @@
+['handle:noticias_tvperu desc:Somos el servicio de noticias de @TVPeruPE. Tenemos la mejor cobertura y el an\xc3\xa1lisis de periodistas especializados sobre el acontecer nacional e internacional.', '']

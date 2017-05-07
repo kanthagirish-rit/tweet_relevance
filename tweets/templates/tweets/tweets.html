@@ -6,11 +6,15 @@
 	crossorigin="anonymous">
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'tweets/style.css' %}" type="text/css">
+	<link rel="shortcut icon" href="{% static 'tweets/twitter.png' %}" type="img/png">
+    
 	</head>
 	<body>
 		<div class="h22">Tweets Relevance System</div>
 		<h3 style="width:100%;height:5%;text-align:center;">Tweets</h3>
 		<div id="container_tweets">
+		<canvas id="myCanvas" width="578" height="200" style="text-align: center;"></canvas>
+					
 				{% for tweet in data.tweets %}
 					<ul id="list-group">
 						<li class="list-group-item list-group-item-danger">
@@ -28,5 +32,66 @@
 					</ul>
 				{% endfor %}
 		</div>
-	</body>
+
+
+<!--<div class="footer">
+<p><a href="#">About</a></p>
+<p><a href="#">Team</a></p>
+<p><a href="#">Contact</a></p>
+</div>-->
+<script>
+	/*var c = document.getElementById("myCanvas");
+		c.width = 400;
+		c.height = 400;
+        var ctx = c.getContext("2d");
+        var img1 = new Image();
+        img1.onload = function() {
+        ctx.drawImage(img1, 0, 0);
+        var img2 = new Image();
+        img1.onload = function() {
+        ctx.drawImage(img2, 0, 0);
+        var img3 = new Image();
+        img1.onload = function() {
+        ctx.drawImage(img3, 0, 0);
+    };
+    img1.src = 'https://cdn2.iconfinder.com/data/icons/the-politics/350/Politician-512.png';*/
+
+    function loadImages(sources, callback) {
+        var images = {};
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++;
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];
+        }
+      }
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      var sources = {
+        politics: 'https://d30y9cdsu7xlg0.cloudfront.net/png/25455-200.png',
+        entertainment: 'https://image.flaticon.com/icons/png/512/39/39627.png',
+        sports: 'https://image.flaticon.com/icons/svg/27/27127.svg'
+      };
+
+      loadImages(sources, function(images) {
+        context.drawImage(images.politics, 100, 30, 150, 150);
+        context.drawImage(images.entertainment, 280, 55, 100, 150);
+        context.drawImage(images.sports, 400, 35, 190, 150);
+        
+      });
+</script>
+
+
+
+</body>
 </html>
