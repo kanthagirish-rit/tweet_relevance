@@ -1,0 +1,1 @@
+['handle:starsandstripes desc:Stars and Stripes is a daily newspaper published for the U.S. military, DOD civilians, contractors and their families.', '']
