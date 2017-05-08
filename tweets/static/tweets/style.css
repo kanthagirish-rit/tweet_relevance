@@ -1,63 +1,69 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
-    background-color:  #f2f5f9;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	background-color:  #f2f5f9;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.header{
+	width:100%;
+	height:50px;
+	background-color: #3b5998;
 }
 
 .title{
-    width:100%;
-    height:50px;
-    text-align:center;
-    color:#ffffff;
-    background-color: #3b5998;
-    font-weight: 500;
+    width: 50%;
+	height: inherit;
+	margin-left: 25%;
+	text-align: center;
+	color: #ffffff;
+	background-color: inherit;
+	font-weight: 500;
     font-size: 32px;
+    float: left;
 }
 
-.h22{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 30;
-    width:100%;
-    height:8%;
-    text-align:center;
-    margin-bottom: 2%;
-    margin-top:1%;
+.tabs{
+    width: 15%;
+    margin-left:8%;
+    float:left;
+    margin-top:20px;
+    color: #ffffff;
+}
+
+.tabItems{
+    width: 50%;
+    float: left;
+    font-size: 18px;
+}
+
+.tabSpan{
+    cursor: pointer;
 }
 
 div#container {
-    background-color: none;
-    width: 70%;
-    height: 100%;
-    margin-left:15%;
+	background-color: none;
+	width: 70%;
+	height: 100%;
+	margin-left:15%;
 }
 .trend-container {
-    display: inline-block;
-    float: left;
-    width: 100%;
-    height: 45px;
+	display: inline-block;
+	float: left;
+	width: 100%;
+	height: 45px;
 }
 
 ul#menu {
     list-style-type: none;
 }
 
-li#list2{
-    font-size: 16;
-}
-
-li a {
-    display: block;
-    color: black;
-    margin: 10px;
-    text-align: center !important;
-}
 div#form_page {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    background-color: #f7faff;
-    border: 1px solid #e3e8ef;
+	position: relative;
+	width: 100%;
+	height: 50px;
+	background-color: #f7faff;
+	border: 1px solid #e3e8ef;
 }
 
 .form_elements{
@@ -73,29 +79,6 @@ div#form_page {
     height: inherit;
 }
 
-ul#list1 {
-    list-style-type: disc;
-    margin: 5%;
-    
-        }
-div#container_tweets {
-    background-color: none;
-    width: 100%;
-    height: 100%;
-    text-align:left;
-    padding-right:30px;
-    font-size:18px;
-    font-weight: bold;
-}
-
-.footer {
-    width:100%;
-    height:50px;
-    color:#ffffff;
-    background-color: #3b5998;
-    font-weight: 500;
-    font-size: 20px;
-}
 
 button {
      background:none!important;
@@ -117,8 +100,8 @@ button {
     height: auto;
     margin: 5px;
     background-color: #f7faff;
-    border: 1px solid #e3e8ef;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	border: 1px solid #e3e8ef;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .tweetsContainer{
@@ -127,8 +110,8 @@ button {
     height: auto;
     margin: 5px;
     background-color: #f7faff;
-    border: 1px solid #e3e8ef;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	border: 1px solid #e3e8ef;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .trendName{
@@ -150,10 +133,10 @@ button {
 }
 
 .tweet-container {
-    display: inline-block;
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #e3e8ef;
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #e3e8ef;
 }
 
 .avatar{
@@ -210,4 +193,51 @@ button {
 
 .tweetlink{
     color: #0084B4;
+}
+
+.borderClass{
+    background-color: #c9d8ef;
+}
+
+
+.selected {
+    color: #ffaa00;
+}
+
+.messagepop {
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    cursor: default;
+    display: none;
+    margin-top: 15px;
+    position: absolute;
+    text-align: left;
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+    z-index:50;
+    padding: 25px 25px 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+.messagepop p, .messagepop.div {
+    border-bottom: 1px solid #EFEFEF;
+    margin: 8px 0;
+    padding-bottom: 8px;
+}
+
+.popupTitle{
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    color: #66757f;
+    font-size: 24px;
+    margin-bottom: 20px;
 }

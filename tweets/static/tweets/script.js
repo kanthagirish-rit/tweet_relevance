@@ -1,29 +1,28 @@
 
 
 function getTrends(){
-    data = {
-        "woeid": $('#woeid').val(),
-        "category": $('#category').val()
-    };
+	data = {
+	    "woeid": $('#woeid').val(),
+	    "category": $('#category').val()
+	};
 
     $('#tweetsContainer').hide();
 
-    $.ajax({
-        url: "/tweets/start",
-        data: data,
-        dataType: "json",
-        method: "POST",
-        success: function(data){
-            var html = "";
-            var woeid = data.woeid;
-            data = data.data;
+	$.ajax({
+		url: "/tweets/start",
+		data: data,
+		dataType: "json",
+		method: "POST",
+		success: function(data){
+			var html = "";
+			var woeid = data.woeid;
+			data = data.data;
             html += "<input type='hidden' name='woeid' id='woeid' value='"+woeid+"'>";
             html += "<div class='trend-container'><span class='trendsTitle'>";
             html += "Trends</span></div>";
             if (data.length > 0){
                 for(var i=0;i<data.length;i++){
                     html += "<div class=\"trend-container\" id=\"trend"+i+"\">";
-
                     html += "<input type='hidden' name='trend' value='"+data[i].trend.trend+"'>";
                     html += "<ul id= \"menu\">";
                     html += "<li id=\"list2\">";
@@ -41,32 +40,35 @@ function getTrends(){
                     html += "</ul>";
                     html += "</div>";
                 }
-            }
-            else {
-                html += "<div class='trend-container'><span class='trendsTitle'>";
+			}
+			else {
+			    html += "<div class='trend-container'><span class='trendsTitle'>";
                 html += "No trends to show</span></div>";
-            }
-            $('#trendsContainer').html(html);
-            $('#trendsContainer').show();
-        }
-    });
+			}
+			$('#trendsContainer').html(html);
+			$('#trendsContainer').show();
+		}
+	});
 }
-        
+		
 function getTweets(id){
-    trend = $("#"+id+" input:hidden").val();
+    var trend = $("#"+id+" input[name='trend']").val();
+    $('.borderClass').removeClass('borderClass');
+    $("#"+id).addClass('borderClass');
+
     data = {
         "trend": trend,
         "woeid": $('#woeid').val()
     }
 
     $.ajax({
-        url: "/tweets/tweets",
-        data: data,
-        dataType: "json",
-        method: "POST",
-        success: function(data){
-            var html = "";
-            if (data.tweets.length > 0){
+		url: "/tweets/tweets",
+		data: data,
+		dataType: "json",
+		method: "POST",
+		success: function(data){
+	        var html = "";
+	        if (data.tweets.length > 0){
                 for (var i=0; i<data.tweets.length; i++){
                     html += "<div class=\"tweet-container\">";
                     html += "<img src=\"" + data.tweets[i].user.profile_background_image_url;
@@ -89,14 +91,57 @@ function getTweets(id){
                     html += "</span>";
                     html += "</div>"
                     html += "</div>";
-                    console.log(html);
                 }
             } else {
                 html += "<div class=\"tweet-container\"><div class=\"textgroup\">";
                 html += "<p class=\"tweetText\">Oops! No tweets to show</p></div>";
             }
-            $('#tweetsContainer').html(html);
-            $('#tweetsContainer').show();
-        }
+	        $('#tweetsContainer').html(html);
+	        $('#tweetsContainer').show();
+	    }
+	});
+}
+
+function deselect(e, classStr) {
+    $(classStr).slideFadeToggle(function() {
+        e.removeClass('selected');
     });
 }
+
+$(function() {
+    $('#about').on('click', function() {
+        if($(this).hasClass('selected')) {
+            deselect($(this));
+        } else {
+            $(this).addClass('selected');
+            $('.about').slideFadeToggle();
+        }
+        return false;
+    });
+
+    $('.closeAbout').on('click', function() {
+        deselect($('#about'), '.about');
+        return false;
+    });
+});
+
+$(function() {
+    $('#team').on('click', function() {
+        if($(this).hasClass('selected')) {
+            deselect($(this));
+        } else {
+            $(this).addClass('selected');
+            $('.team').slideFadeToggle();
+        }
+        return false;
+    });
+
+    $('.closeTeam').on('click', function() {
+        deselect($('#team'), '.team');
+        return false;
+    });
+});
+
+$.fn.slideFadeToggle = function(easing, callback) {
+    return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+};

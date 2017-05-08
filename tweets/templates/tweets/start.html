@@ -13,20 +13,33 @@
     <script src="{% static 'tweets/script.js' %}"></script>
 </head>
 <body>
-<div class="title">Tweets Relevance System</div>
+<div class="header">
+    <div class="title">Tweets Relevance System</div>
+    <div class="tabs">
+        <div class="tabItems">
+            <span class="tabSpan" id="about">About</span>
+        </div>
+        <div class="tabItems">
+            <span class="tabSpan" id="team">Team</span>
+        </div>
+    </div>
+</div>
+
 <div id="form_page">
     <form action='tweets/start' method="POST">
         <div class="form_elements">
             {% csrf_token %}
             <div class="form_div">
-                <select id="woeid" name="woeid">
+                <select id="woeid" name="woeid" class="dropdown">
+                    <option>Select Place</option>
                     <option value="2459115">New York</option>
                     <option value="2442047">Los Angeles</option>
                     <option value="2490383">Seattle</option>
                 </select>
             </div>
             <div class="form_div">
-                <select id="category" name="category">
+                <select id="category" name="category" class="dropdown">
+                    <option>Select Category</option>
                     <option value="sports">Sports</option>
                     <option value="technology">Technology</option>
                     <option value="entertainment">Entertainment</option>
@@ -48,6 +61,39 @@
     </div>
     <div id="tweetsContainer" class="tweetsContainer" style="display:none">
 
+    </div>
+</div>
+
+<div class="messagepop pop about">
+    <div class="popupTitle">About</div>
+    <p>
+        This application classifies the Twitter trends to pre-defined categories. The
+        trends/hashtags will be more meaningful because you will know what category it
+        belongs to. The tweets shown under a trend are again filtered to show tweets by the
+        database of users maintained by the application. These users are celebrities or
+        popular people with verified twitter accounts.
+    </p>
+    <div style="text-align: center; margin-botom:10px">
+        <a class="closeAbout" href="/">Close</a>
+    </div>
+</div>
+<div class="messagepop pop team">
+    <div class="popupTitle">Team</div>
+    <p>
+        <ul>
+            <li>
+                Pankaj Vasant Uchil (pu3876@g.rit.edu)
+            </li>
+            <li>
+                Samana Seturam Katti (sk6021@g.rit.edu)
+            </li>
+            <li>
+                Kantha Girish Gangadhara (kg2605@g.rit.edu)
+            </li>
+        </ul>
+    </p>
+    <div style="text-align: center; margin-botom:10px">
+        <a class="closeTeam" href="/">Close</a>
     </div>
 </div>
 </body>

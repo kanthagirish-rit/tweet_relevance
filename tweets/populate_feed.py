@@ -13,7 +13,6 @@ from database import getDBInstance
 from util import getLogger, config
 
 
-TARGETS_FILE = "targets.json"
 logger = getLogger("populate_feed")
 
 
@@ -48,43 +47,6 @@ def getTweets(woeid):
     return tweets
 
 
-def test():
-    """
-    :return: None
-
-    This function runs the test case to fetch tweets for NYC and filter them according to
-    the list of popular/celebrity twitter handles manually created. The final result is
-    tweets by the popular/celebrity twitter handles for the trending topics. This is printed
-    on the console.
-    """
-    woeid = 2459115         # NYC
-    tweets = getTweets(woeid)
-
-    if tweets:
-        invIndex = InvertedIndex(tweets)
-
-        with open(TARGETS_FILE) as file:
-            targets = json.load(file)
-            filteredTweets = invIndex.getRelevantTweets(targets['targets'])
-
-            print("The following are the filtered relevant tweets for each trending topic\n\n")
-            tweetCount = 0
-            for trend, tweets in filteredTweets.items():
-                if tweets:
-                    print("Trend: " + trend)
-                    print("__________________________________________________________________")
-
-                    tweetCount += len(tweets)
-                    for tweet in tweets:
-                        print("User: " + tweet.user.name)
-                        print("Tweet Text: " + tweet.text)
-                        print("Re-tweet count: " + str(tweet.retweet_count))
-                        print("Favorites: " + str(tweet.favorite_count) + "\n")
-                    print("\n")
-            if tweetCount == 0:
-                print("Looks like no one (in our list) has tweeted on current trends!")
-
-
 def main():
     """
     :return: None
@@ -95,7 +57,8 @@ def main():
     cursor = db.places.find({})
 
     logger.debug("main(): Beginning to fetch tweets and create Inverted Index")
-    woeids = [2459115, 2442047, 2490383]
+    # woeids = [2459115, 2442047, 2490383]
+
     for document in cursor:
         woeid = int(document['woeid'])
         logger.debug("main(): Working on woeid-{}".format(woeid))
