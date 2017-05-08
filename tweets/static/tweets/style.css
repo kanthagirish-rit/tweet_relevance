@@ -1,26 +1,44 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
-	background-color:  #c0deed;
-	font-family: 'Montserrat', sans-serif;
+	background-color:  #f2f5f9;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.h2{
-	font-family: 'Montserrat', sans-serif;
+.header{
 	width:100%;
-	height:20%;
-	text-align:center;
-	margin-bottom: 50px;
+	height:50px;
+	background-color: #3b5998;
 }
 
-.h22{
-	font-family: 'Montserrat', sans-serif;
-	font-size: 30;
-	width:100%;
-	height:8%;
-	text-align:center;
-	margin-bottom: 2%;
-	margin-top:1%;
+.title{
+    width: 50%;
+	height: inherit;
+	margin-left: 25%;
+	text-align: center;
+	color: #ffffff;
+	background-color: inherit;
+	font-weight: 500;
+    font-size: 32px;
+    float: left;
+}
+
+.tabs{
+    width: 15%;
+    margin-left:8%;
+    float:left;
+    margin-top:20px;
+    color: #ffffff;
+}
+
+.tabItems{
+    width: 50%;
+    float: left;
+    font-size: 18px;
+}
+
+.tabSpan{
+    cursor: pointer;
 }
 
 div#container {
@@ -29,66 +47,197 @@ div#container {
 	height: 100%;
 	margin-left:15%;
 }
-div#trend-container {
-	background-color: #00aced;
-	margin: 5px 10px;
+.trend-container {
 	display: inline-block;
 	float: left;
-	width: 30%;
-	height: 25%;
+	width: 100%;
+	height: 45px;
 }
+
 ul#menu {
     list-style-type: none;
-    margin: 5%;
-}
-li#list2{
-	margin: 2%;
-	font-size: 18;
-	word-wrap: break-word;
 }
 
-li a {
-    display: block;
-    color: black;
-    margin: 10px;
-   	text-align: center !important;
-}
 div#form_page {
-	position: absolute;
-	top: 100px;
-	left: 65%;
-	margin-left:-250px;
-	width: 150px; 
-	height: 50px;
-	margin-bottom: 50px;
-}
-ul#list1 {
-    list-style-type: disc;
-    margin: 5%;
-    
-        }
-div#container_tweets {
-	background-color: none;
+	position: relative;
 	width: 100%;
-	height: 100%;
-	text-align:left;
-	padding-right:30px;
-	font-size:18px;
-	font-weight: bold;
+	height: 50px;
+	background-color: #f7faff;
+	border: 1px solid #e3e8ef;
 }
 
-.footer {
-    width:100%;
-    height: 20%;
+.form_elements{
+    margin-top:5px;
+    width: 30%;
+    margin-left:35%;
+    height:inherit;
 }
+
+.form_div{
+    width:33%;
+    float:left;
+    height: inherit;
+}
+
 
 button {
      background:none!important;
+     text-decoration: none !important;
      color:inherit;
-     border:none;
      padding:0!important;
+     border: none;
      font: inherit;
-     /*border is optional*/
-     border-bottom:1px solid #444;
      cursor: pointer;
+}
+
+.mainContainer{
+    width:100%;
+}
+
+.trendsContainer{
+    float:left;
+    width: 25%;
+    height: auto;
+    margin: 5px;
+    background-color: #f7faff;
+	border: 1px solid #e3e8ef;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.tweetsContainer{
+    float:left;
+    width: 50%;
+    height: auto;
+    margin: 5px;
+    background-color: #f7faff;
+	border: 1px solid #e3e8ef;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.trendName{
+    font-weight: bold;
+    color: #0084B4;
+}
+
+.trendCount{
+    color: #657786;
+    font-size: 12px;
+}
+
+.trendsTitle{
+    color: #66757f;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top:10%;
+    margin-left:30%;
+}
+
+.tweet-container {
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #e3e8ef;
+}
+
+.avatar{
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    float: left;
+    margin: 10px;
+}
+
+.fullname{
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #14171a;
+    margin-top: 10px;
+}
+
+.namegroup{
+    margin-top: 10px;
+}
+
+.username{
+    font-size: 14px;
+    color: #657786;
+    margin-left: 5px;
+}
+
+.textgroup{
+    color: #14171a;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 68px;
+}
+
+.tweetText{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 20px;
+    color: #14171a;
+}
+
+.detailsgroup{
+    font-size: 14px;
+    color: #657786;
+    margin-left: 80px;
+    margin-bottom:5px;
+}
+
+.details{
+    margin-right:40px;
+}
+
+.tweetlink{
+    color: #0084B4;
+}
+
+.borderClass{
+    background-color: #c9d8ef;
+}
+
+
+.selected {
+    color: #ffaa00;
+}
+
+.messagepop {
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    cursor: default;
+    display: none;
+    margin-top: 15px;
+    position: absolute;
+    text-align: left;
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+    z-index:50;
+    padding: 25px 25px 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+
+.messagepop p, .messagepop.div {
+    border-bottom: 1px solid #EFEFEF;
+    margin: 8px 0;
+    padding-bottom: 8px;
+}
+
+.popupTitle{
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    color: #66757f;
+    font-size: 24px;
+    margin-bottom: 20px;
 }

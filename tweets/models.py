@@ -1,7 +1,7 @@
-from .database import getDBInstance
+from .app_database import getDBInstance
 
 
-def getTrends(woeid):
+def getTrends(woeid, category):
     """
     :param woeid: a unique integer representation of the place
     :return: a python list of python dictionaries of the following structure
@@ -20,13 +20,15 @@ def getTrends(woeid):
             "$unwind": "$trends"
         },
         {
+            "$match": {"trends.category": category}
+        },
+        {
             "$unwind": "$trends.tweets"
         },
         {
             "$group": {
                 "_id": {
-                    "trend": "$trends.trend",
-                    "category": "$trends.category"
+                    "trend": "$trends.trend"
                 },
                 "count": {"$sum": 1}
             }
@@ -41,8 +43,17 @@ def getTrends(woeid):
 
 def getTweets(trend, woeid):
     """
-    :param trend:
-    :return:
+    :param trend: Twitter trend/hashtag
+    :param woeid: place id
+    :return: tweets for the selected hashtag and place
+        {
+            "tweets": [
+                tweetObject1,
+                tweetObject2,
+                .
+            ],
+            "woeid": "selected woeid"
+        }
     """
     db = getDBInstance()
     payload = [{
