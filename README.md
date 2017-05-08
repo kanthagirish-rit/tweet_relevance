@@ -1,14 +1,19 @@
 # README #
 
-This README documents necessary steps to the application up and running.
+This README documents necessary steps to get the application up and running.
 
 ### The project ###
 
-* Description: This is the first release of the implementation fo Tweet Relevance System. This
+* Description: This is the final release of the version 1.1 of Tweet Relevance System. This
 application fetches trending topics from the twitter and tweets for them. The fetched tweets
- are filtered to find tweets of popular people/celebrities. The list of celebrity twitter
- handles is manually created. The end result is a list of trends with each containing a list
-  of tweets by popular people/celebs.
+ are filtered to find tweets of popular people/celebrities. The database of celebrity twitter
+ accounts is maintained in the mongodb. The end result is a list of trends with each containing
+ a list of tweets by popular people/celebs.
+
+ This release includes classification of Twitter trends/hashtags into categories. The
+ classification is done by using a Naive Bayes model trained on the categorized data. The model
+  is stored in the mongodb.
+
 * Version: 1.1
 
 ### Authors ###
@@ -20,12 +25,24 @@ application fetches trending topics from the twitter and tweets for them. The fe
 
 * The code is written in python-3.5. The below mentioned dependencies are required to be
 installed
-* Configuration : config.ini [twitter keys]
+
+* Configuration : tweets/config.ini <br><br>[twitter keys] The keys are included
+                             <br><br>[training] Specify the name of folder containing traning data and name of stop words file
+                             <br><br>[log] Specify the location and file names for logging script
+                                    results.
+                             <br><br>[mongodb] Specify the name of database to use for the application
+
 * Dependencies :
                 <br/>python 3.5 or higher,
                 <br/>python-twitter (https://pypi.python.org/pypi/python-twitter/)
-* Database configuration
-* How to run tests :
-                    <br/>Command line - python(3) core_algorithm.py
-                    <br/>Any python IDE - run core_algorithm.py
+                <br/>pymongo
+                <br/>django version 1.1
+
+
+### Run Instructions (shell commands) ###
+Please make sure that all the dependencies mentioned above are installed
+and all the files and paths required are specified in config.ini.
+* Training classifier: - python3 train_classifiers.py
+* Populate application database with tweets: - python3 populate_feed.py
+* Start web server: - python3 manage.py runserver
 

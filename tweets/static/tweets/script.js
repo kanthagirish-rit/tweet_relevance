@@ -23,7 +23,6 @@ function getTrends(){
             if (data.length > 0){
                 for(var i=0;i<data.length;i++){
                     html += "<div class=\"trend-container\" id=\"trend"+i+"\">";
-
                     html += "<input type='hidden' name='trend' value='"+data[i].trend.trend+"'>";
                     html += "<ul id= \"menu\">";
                     html += "<li id=\"list2\">";
@@ -53,7 +52,10 @@ function getTrends(){
 }
 		
 function getTweets(id){
-    trend = $("#"+id+" input:hidden").val();
+    var trend = $("#"+id+" input[name='trend']").val();
+    $('.borderClass').removeClass('borderClass');
+    $("#"+id).addClass('borderClass');
+
     data = {
         "trend": trend,
         "woeid": $('#woeid').val()
@@ -89,7 +91,6 @@ function getTweets(id){
                     html += "</span>";
                     html += "</div>"
                     html += "</div>";
-                    console.log(html);
                 }
             } else {
                 html += "<div class=\"tweet-container\"><div class=\"textgroup\">";
@@ -100,3 +101,47 @@ function getTweets(id){
 	    }
 	});
 }
+
+function deselect(e, classStr) {
+    $(classStr).slideFadeToggle(function() {
+        e.removeClass('selected');
+    });
+}
+
+$(function() {
+    $('#about').on('click', function() {
+        if($(this).hasClass('selected')) {
+            deselect($(this));
+        } else {
+            $(this).addClass('selected');
+            $('.about').slideFadeToggle();
+        }
+        return false;
+    });
+
+    $('.closeAbout').on('click', function() {
+        deselect($('#about'), '.about');
+        return false;
+    });
+});
+
+$(function() {
+    $('#team').on('click', function() {
+        if($(this).hasClass('selected')) {
+            deselect($(this));
+        } else {
+            $(this).addClass('selected');
+            $('.team').slideFadeToggle();
+        }
+        return false;
+    });
+
+    $('.closeTeam').on('click', function() {
+        deselect($('#team'), '.team');
+        return false;
+    });
+});
+
+$.fn.slideFadeToggle = function(easing, callback) {
+    return this.animate({ opacity: 'toggle', height: 'toggle' }, 'fast', easing, callback);
+};

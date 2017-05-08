@@ -1,4 +1,4 @@
-from .database import getDBInstance
+from .app_database import getDBInstance
 
 
 def getTrends(woeid, category):
@@ -43,8 +43,17 @@ def getTrends(woeid, category):
 
 def getTweets(trend, woeid):
     """
-    :param trend:
-    :return:
+    :param trend: Twitter trend/hashtag
+    :param woeid: place id
+    :return: tweets for the selected hashtag and place
+        {
+            "tweets": [
+                tweetObject1,
+                tweetObject2,
+                .
+            ],
+            "woeid": "selected woeid"
+        }
     """
     db = getDBInstance()
     payload = [{
