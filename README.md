@@ -26,7 +26,7 @@ application fetches trending topics from the twitter and tweets for them. The fe
 * The code is written in python-3.5. The below mentioned dependencies are required to be
 installed
 
-* Configuration : tweets/config.ini <br><br>[twitter keys] The keys are included
+* Configuration : tweets/config.ini <br><br>[twitter keys] The keys are required, can be obtained by creating application on apps.twitter.com
                              <br><br>[training] Specify the name of folder containing traning data and name of stop words file
                              <br><br>[log] Specify the location and file names for logging script
                                     results.
