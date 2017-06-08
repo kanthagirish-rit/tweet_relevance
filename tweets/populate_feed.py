@@ -42,7 +42,8 @@ def getTweets(woeid):
     logger.debug("getTweets(): fetching trends")
     for trend in trends:
         tweets[trend.name] = api.GetSearch(term=trend.name
-                                           , count=config['twitter']['fetch_count'])
+                                           , count=config['twitter']['fetch_count']
+                                           , lang="en")
         
     return tweets
 

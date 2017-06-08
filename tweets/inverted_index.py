@@ -118,13 +118,20 @@ class InvertedIndex:
         }
 
         filteredCount = 0
-        for target in targets:
+        '''for target in targets:
             posts = self.search(target)
             if posts:
                 filteredCount += len(posts)
                 for trendIndex, post in posts:
-                    trendingData[self.trends[trendIndex]].append(json.loads(str(post)))
+                    trendingData[self.trends[trendIndex]].append(json.loads(str(post)))'''
 
+        for target in self.twitterHandles:
+            posts = self.search(target)
+            if posts:
+                for trendIndex, post in posts:
+                    if post.user.verified:
+                        filteredCount += 1
+                        trendingData[self.trends[trendIndex]].append(json.loads(str(post)))
         data = []
         for trend in trendingData:
             d = {
